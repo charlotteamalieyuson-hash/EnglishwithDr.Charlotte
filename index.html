@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>English Activities A2 & B1 — With Answers</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0F0F0F;
+  --surface: #1A1A1A;
+  --surface2: #222222;
+  --border: #2E2E2E;
+  --ink: #F0EDE8;
+  --muted: #888580;
+  --a2: #F5A623;
+  --a2-dim: rgba(245,166,35,0.12);
+  --a2-border: rgba(245,166,35,0.3);
+  --b1: #4ECDC4;
+  --b1-dim: rgba(78,205,196,0.12);
+  --b1-border: rgba(78,205,196,0.3);
+  --correct: #4ADE80;
+  --correct-bg: rgba(74,222,128,0.1);
+  --wrong: #F87171;
+  --wrong-bg: rgba(248,113,113,0.1);
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  font-weight: 400;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 24px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content:'';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(245,166,35,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.hero-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 50px;
+}
+.hero-badge.a2 { background: var(--a2-dim); color: var(--a2); border: 1px solid var(--a2-border); }
+.hero-badge.b1 { background: var(--b1-dim); color: var(--b1); border: 1px solid var(--b1-border); }
+
+.hero h1 {
+  font-family: 'Bitter', serif;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  position: relative;
+}
+.hero h1 em { font-style: italic; color: var(--a2); }
+.hero-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  max-width: 480px;
+  margin: 0 auto 28px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Bitter', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-num.a2c { color: var(--a2); }
+.stat-num.b1c { color: var(--b1); }
+.stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 3px; letter-spacing: 0.5px; }
+
+/* ─── NAV TABS ─── */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15,15,15,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  gap: 0;
+  justify-content: center;
+}
+.nav-tab {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 16px 28px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.nav-tab:hover { color: var(--ink); }
+.nav-tab.a2.active { color: var(--a2); border-bottom-color: var(--a2); }
+.nav-tab.b1.active { color: var(--b1); border-bottom-color: var(--b1); }
+.nav-tab.all.active { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ─── MAIN CONTENT ─── */
+.content { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
+
+/* ─── LEVEL SECTION ─── */
+.level-section { display: none; }
+.level-section.visible { display: block; animation: fadeUp 0.35s ease; }
+@keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: none; } }
+
+.level-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.level-circle {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bitter', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.a2-circle { background: var(--a2-dim); color: var(--a2); border: 2px solid var(--a2-border); }
+.b1-circle { background: var(--b1-dim); color: var(--b1); border: 2px solid var(--b1-border); }
+
+.level-heading-text h2 {
+  font-family: 'Bitter', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.level-heading-text p { color: var(--muted); font-size: 0.875rem; margin-top: 4px; }
+
+/* ─── ACTIVITY BLOCK ─── */
+.activity {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.activity:hover { border-color: #444; }
+
+.activity-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.act-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.act-meta { flex: 1; }
+.act-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 50px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.tag-a2 { background: var(--a2-dim); color: var(--a2); border: 1px solid var(--a2-border); }
+.tag-b1 { background: var(--b1-dim); color: var(--b1); border: 1px solid var(--b1-border); }
+
+.act-title {
+  font-family: 'Bitter', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.act-desc { font-size: 0.83rem; color: var(--muted); }
+
+.toggle-answers-btn {
+  margin-left: auto;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 7px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: center;
+}
+.toggle-answers-btn:hover { border-color: #666; color: var(--ink); }
+.toggle-answers-btn.shown { color: var(--a2); border-color: var(--a2-border); background: var(--a2-dim); }
+.activity.b1-act .toggle-answers-btn.shown { color: var(--b1); border-color: var(--b1-border); background: var(--b1-dim); }
+
+/* ─── PASSAGE ─── */
+.passage {
+  margin: 16px 24px;
+  background: var(--surface2);
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: #C8C5C0;
+  border-left: 3px solid var(--border);
+  white-space: pre-line;
+}
+
+/* ─── QUESTIONS ─── */
+.questions { padding: 8px 24px 20px; }
+
+.q-item {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.q-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.q-num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.q-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 1px;
+  background: var(--surface2);
+  padding: 2px 8px;
+  border-radius: 50px;
+  flex-shrink: 0;
+}
+.q-text {
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* MCQ Options */
+.opts-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.opt {
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s;
+  cursor: pointer;
+  background: var(--surface2);
+  user-select: none;
+}
+.opt:hover { border-color: #555; color: var(--ink); }
+.opt.selected { border-color: #666; color: var(--ink); background: #2a2a2a; }
+.opt.correct-ans { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+.opt.wrong-ans { border-color: var(--wrong); background: var(--wrong-bg); color: var(--wrong); }
+.opt-letter {
+  font-size: 0.7rem;
+  font-weight: 700;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.opt.correct-ans .opt-letter { background: var(--correct); color: #000; }
+.opt.wrong-ans .opt-letter { background: var(--wrong); color: #fff; }
+
+/* Fill blank */
+.fill-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+.fill-inp {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.88rem;
+  padding: 9px 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.fill-inp:focus { border-color: #666; }
+.fill-inp.correct-fill { border-color: var(--correct); background: var(--correct-bg); color: var(--correct); }
+.fill-inp.wrong-fill { border-color: var(--wrong); background: var(--wrong-bg); color: var(--wrong); }
+
+.check-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.check-btn:hover { border-color: #666; color: var(--ink); }
+
+/* Answer Key Panel */
+.answer-key {
+  display: none;
+  margin: 0 24px 20px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.answer-key.open { display: block; animation: fadeUp 0.2s ease; }
+.answer-key-header {
+  padding: 10px 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  background: #1e1e1e;
+}
+.answer-key-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0;
+}
+.ak-item {
+  padding: 10px 16px;
+  font-size: 0.83rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.ak-item:last-child { border-right: none; }
+.ak-qnum { color: var(--muted); font-size: 0.75rem; font-weight: 600; flex-shrink: 0; }
+.ak-ans { color: var(--correct); font-weight: 600; }
+
+/* Score box */
+.score-box {
+  margin: 0 24px 20px;
+  padding: 14px 18px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.score-label { font-size: 0.8rem; color: var(--muted); }
+.score-val {
+  font-family: 'Bitter', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ─── SEPARATOR ─── */
+.level-separator {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 52px 0 48px;
+  position: relative;
+}
+.level-separator::before {
+  content: '···';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  padding: 0 12px;
+  color: var(--border);
+  letter-spacing: 4px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .activity-header { flex-wrap: wrap; }
+  .toggle-answers-btn { margin-left: 0; margin-top: 4px; }
+  .fill-row { flex-direction: column; align-items: stretch; }
+  .hero-stats { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badges">
+    <span class="hero-badge a2">A2 Elementary</span>
+    <span class="hero-badge b1">B1 Intermediate</span>
+  </div>
+  <h1>English <em>Activities</em><br>With Answer Keys</h1>
+  <p class="hero-sub">Intermediate-level exercises covering grammar, vocabulary, reading & writing — all answers included</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num a2c">8</div><div class="stat-label">A2 Activities</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--ink)">60+</div><div class="stat-label">Questions</div></div>
+    <div class="stat"><div class="stat-num b1c">8</div><div class="stat-label">B1 Activities</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <button class="nav-tab all active" onclick="showAll(this)">All</button>
+  <button class="nav-tab a2" onclick="showLevel('a2', this)">A2</button>
+  <button class="nav-tab b1" onclick="showLevel('b1', this)">B1</button>
+</nav>
+
+<div class="content">
+
+  <!-- ═══ A2 SECTION ═══ -->
+  <div class="level-section visible" id="sec-a2">
+    <div class="level-heading">
+      <div class="level-circle a2-circle">A2</div>
+      <div class="level-heading-text">
+        <h2>Elementary Level</h2>
+        <p>Simple grammar, everyday vocabulary, basic comprehension</p>
+      </div>
+    </div>
+
+    <!-- A2-1: Present Simple -->
+    <div class="activity" id="act-a2-1">
+      <div class="activity-header">
+        <div class="act-icon">⏰</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Grammar</span>
+          <div class="act-title">Present Simple — Positive & Negative</div>
+          <div class="act-desc">Choose the correct verb form to complete each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-1')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-1">
+        <!-- Q1 -->
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">She __ to school every day by bus.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-1',1,false)"><span class="opt-letter">A</span> go</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',1,true)"><span class="opt-letter">B</span> goes</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',1,false)"><span class="opt-letter">C</span> going</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',1,false)"><span class="opt-letter">D</span> gone</li>
+          </ul>
+        </div>
+        <!-- Q2 -->
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">They __ not play football on Mondays.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-1',2,false)"><span class="opt-letter">A</span> is</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',2,false)"><span class="opt-letter">B</span> does</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',2,true)"><span class="opt-letter">C</span> do</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',2,false)"><span class="opt-letter">D</span> are</li>
+          </ul>
+        </div>
+        <!-- Q3 -->
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">My brother __ in a bank. He is a manager.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-1',3,false)"><span class="opt-letter">A</span> work</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',3,true)"><span class="opt-letter">B</span> works</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',3,false)"><span class="opt-letter">C</span> is working</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',3,false)"><span class="opt-letter">D</span> worked</li>
+          </ul>
+        </div>
+        <!-- Q4 -->
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">__ your parents drink tea in the morning?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-1',4,false)"><span class="opt-letter">A</span> Does</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',4,true)"><span class="opt-letter">B</span> Do</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',4,false)"><span class="opt-letter">C</span> Are</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',4,false)"><span class="opt-letter">D</span> Is</li>
+          </ul>
+        </div>
+        <!-- Q5 -->
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">The cat __ sleep on the sofa every night.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-1',5,false)"><span class="opt-letter">A</span> don't</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',5,true)"><span class="opt-letter">B</span> doesn't</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',5,false)"><span class="opt-letter">C</span> isn't</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-1',5,false)"><span class="opt-letter">D</span> aren't</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-1">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-1">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — goes</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">C — do</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — works</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — Do</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">B — doesn't</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-2: Past Simple -->
+    <div class="activity" id="act-a2-2">
+      <div class="activity-header">
+        <div class="act-icon">🕰️</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Grammar</span>
+          <div class="act-title">Past Simple — Regular & Irregular Verbs</div>
+          <div class="act-desc">Select the correct past tense form for each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-2')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-2">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">Yesterday, we __ to the cinema.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-2',1,false)"><span class="opt-letter">A</span> go</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',1,true)"><span class="opt-letter">B</span> went</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',1,false)"><span class="opt-letter">C</span> goed</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',1,false)"><span class="opt-letter">D</span> gone</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">She __ a letter to her friend last week.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-2',2,false)"><span class="opt-letter">A</span> write</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',2,false)"><span class="opt-letter">B</span> writed</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',2,true)"><span class="opt-letter">C</span> wrote</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',2,false)"><span class="opt-letter">D</span> written</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">They __ their homework before dinner.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-2',3,true)"><span class="opt-letter">A</span> finished</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',3,false)"><span class="opt-letter">B</span> finish</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',3,false)"><span class="opt-letter">C</span> finisht</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',3,false)"><span class="opt-letter">D</span> finishes</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">He __ his keys yesterday morning.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-2',4,false)"><span class="opt-letter">A</span> lose</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',4,true)"><span class="opt-letter">B</span> lost</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',4,false)"><span class="opt-letter">C</span> losed</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',4,false)"><span class="opt-letter">D</span> losen</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">I __ very tired after work last night.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-2',5,false)"><span class="opt-letter">A</span> am</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',5,false)"><span class="opt-letter">B</span> be</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',5,true)"><span class="opt-letter">C</span> was</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-2',5,false)"><span class="opt-letter">D</span> been</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-2">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-2">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — went</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">C — wrote</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">A — finished</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — lost</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">C — was</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-3: Articles -->
+    <div class="activity" id="act-a2-3">
+      <div class="activity-header">
+        <div class="act-icon">📝</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Grammar</span>
+          <div class="act-title">Articles: a / an / the / — (no article)</div>
+          <div class="act-desc">Select the correct article (or no article) in each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-3')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-3">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">Can you close __ window? It's cold.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-3',1,false)"><span class="opt-letter">A</span> a</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',1,false)"><span class="opt-letter">B</span> an</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',1,true)"><span class="opt-letter">C</span> the</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',1,false)"><span class="opt-letter">D</span> —</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">She is __ honest person.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-3',2,false)"><span class="opt-letter">A</span> a</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',2,true)"><span class="opt-letter">B</span> an</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',2,false)"><span class="opt-letter">C</span> the</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',2,false)"><span class="opt-letter">D</span> —</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">I saw __ interesting film at the weekend.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-3',3,false)"><span class="opt-letter">A</span> the</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',3,true)"><span class="opt-letter">B</span> an</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',3,false)"><span class="opt-letter">C</span> a</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',3,false)"><span class="opt-letter">D</span> —</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">__ Moon goes around the Earth.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-3',4,false)"><span class="opt-letter">A</span> A</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',4,false)"><span class="opt-letter">B</span> An</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',4,true)"><span class="opt-letter">C</span> The</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',4,false)"><span class="opt-letter">D</span> —</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">He plays __ football every Saturday.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-3',5,false)"><span class="opt-letter">A</span> a</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',5,false)"><span class="opt-letter">B</span> an</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',5,false)"><span class="opt-letter">C</span> the</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-3',5,true)"><span class="opt-letter">D</span> — (no article)</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-3">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-3">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">C — the</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — an</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — an</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">C — The</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">D — no article</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-4: Vocabulary Fill -->
+    <div class="activity" id="act-a2-4">
+      <div class="activity-header">
+        <div class="act-icon">🏠</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Vocabulary</span>
+          <div class="act-title">Daily Life — Fill in the Blanks</div>
+          <div class="act-desc">Complete each sentence with the correct word.<br><em style="color:var(--muted);font-size:0.8rem">Word bank: fridge, chemist, alarm clock, queue, receipt</em></div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-4')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-4">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">I set my __ for 7 am so I don't miss the bus.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-a2-4-1" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('a2-4',1,'alarm clock')"/>
+            <button class="check-btn" onclick="checkFill('a2-4',1,'alarm clock')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-a2-4-1"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">Put the milk back in the __ or it will go bad.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-a2-4-2" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('a2-4',2,'fridge')"/>
+            <button class="check-btn" onclick="checkFill('a2-4',2,'fridge')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-a2-4-2"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">I bought some cough medicine from the __ near my house.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-a2-4-3" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('a2-4',3,'chemist')"/>
+            <button class="check-btn" onclick="checkFill('a2-4',3,'chemist')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-a2-4-3"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">There was a long __ at the supermarket checkout.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-a2-4-4" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('a2-4',4,'queue')"/>
+            <button class="check-btn" onclick="checkFill('a2-4',4,'queue')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-a2-4-4"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">Keep your __ in case you want to return the item.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-a2-4-5" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('a2-4',5,'receipt')"/>
+            <button class="check-btn" onclick="checkFill('a2-4',5,'receipt')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-a2-4-5"></div>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-4">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-4">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">alarm clock</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">fridge</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">chemist</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">queue</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">receipt</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-5: Prepositions -->
+    <div class="activity" id="act-a2-5">
+      <div class="activity-header">
+        <div class="act-icon">📍</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Grammar</span>
+          <div class="act-title">Prepositions of Time & Place</div>
+          <div class="act-desc">Choose: <strong>in, on, at</strong> — for time or place.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-5')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-5">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">The meeting is __ Monday morning.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-5',1,false)"><span class="opt-letter">A</span> in</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',1,true)"><span class="opt-letter">B</span> on</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',1,false)"><span class="opt-letter">C</span> at</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">She was born __ 1998.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-5',2,true)"><span class="opt-letter">A</span> in</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',2,false)"><span class="opt-letter">B</span> on</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',2,false)"><span class="opt-letter">C</span> at</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">The train leaves __ 9 o'clock sharp.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-5',3,false)"><span class="opt-letter">A</span> in</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',3,false)"><span class="opt-letter">B</span> on</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',3,true)"><span class="opt-letter">C</span> at</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">I usually relax __ the weekend.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-5',4,false)"><span class="opt-letter">A</span> in</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',4,false)"><span class="opt-letter">B</span> on</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',4,true)"><span class="opt-letter">C</span> at</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">They are waiting __ the bus stop.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-5',5,false)"><span class="opt-letter">A</span> in</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',5,false)"><span class="opt-letter">B</span> on</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-5',5,true)"><span class="opt-letter">C</span> at</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-5">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-5">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — on</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">A — in</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — at</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">C — at</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">C — at</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-6: Comparatives -->
+    <div class="activity" id="act-a2-6">
+      <div class="activity-header">
+        <div class="act-icon">📊</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Grammar</span>
+          <div class="act-title">Comparatives & Superlatives</div>
+          <div class="act-desc">Complete each sentence with the correct comparative or superlative form.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-6')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-6">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">This book is __ (interesting) than that one.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-6',1,false)"><span class="opt-letter">A</span> more interesting</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',1,true)"><span class="opt-letter">B</span> more interesting</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',1,false)"><span class="opt-letter">C</span> interestinger</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',1,false)"><span class="opt-letter">D</span> most interesting</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">She is the __ student in the class. (tall)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-6',2,false)"><span class="opt-letter">A</span> taller</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',2,false)"><span class="opt-letter">B</span> more tall</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',2,true)"><span class="opt-letter">C</span> tallest</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',2,false)"><span class="opt-letter">D</span> most tall</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">Today is __ than yesterday. (hot)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-6',3,false)"><span class="opt-letter">A</span> hoter</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',3,true)"><span class="opt-letter">B</span> hotter</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',3,false)"><span class="opt-letter">C</span> more hot</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',3,false)"><span class="opt-letter">D</span> hottest</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">That was the __ film I have ever seen. (bad)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-6',4,false)"><span class="opt-letter">A</span> badder</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',4,false)"><span class="opt-letter">B</span> worse</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',4,true)"><span class="opt-letter">C</span> worst</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-6',4,false)"><span class="opt-letter">D</span> most bad</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-6">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-6">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">more interesting</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">C — tallest</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — hotter</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">C — worst</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-7: Reading -->
+    <div class="activity" id="act-a2-7">
+      <div class="activity-header">
+        <div class="act-icon">📖</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Reading</span>
+          <div class="act-title">Short Text Comprehension</div>
+          <div class="act-desc">Read the email, then answer the questions below.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-7')">Show Answers</button>
+      </div>
+      <div class="passage">Hi Tom,
+I am writing to tell you about my new job! I started working at a hotel last Monday. I work from 8 am to 4 pm from Tuesday to Saturday. My manager's name is Paula and she is very kind. The hotel is near the city centre, so I walk to work. It only takes fifteen minutes. I get a free lunch every day, which is great!
+Hope to see you soon,
+Anna</div>
+      <div class="questions" id="qs-a2-7">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">When did Anna start her new job?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-7',1,false)"><span class="opt-letter">A</span> Last Friday</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',1,true)"><span class="opt-letter">B</span> Last Monday</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',1,false)"><span class="opt-letter">C</span> Last Tuesday</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',1,false)"><span class="opt-letter">D</span> Last Saturday</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">What time does Anna finish work?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-7',2,false)"><span class="opt-letter">A</span> 8 am</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',2,true)"><span class="opt-letter">B</span> 4 pm</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',2,false)"><span class="opt-letter">C</span> 5 pm</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',2,false)"><span class="opt-letter">D</span> 3 pm</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">How does Anna travel to work?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-7',3,false)"><span class="opt-letter">A</span> By bus</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',3,false)"><span class="opt-letter">B</span> By train</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',3,true)"><span class="opt-letter">C</span> She walks</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',3,false)"><span class="opt-letter">D</span> By car</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">What benefit does Anna get at her job?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-7',4,false)"><span class="opt-letter">A</span> Free transport</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',4,true)"><span class="opt-letter">B</span> Free lunch</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',4,false)"><span class="opt-letter">C</span> Free uniform</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-7',4,false)"><span class="opt-letter">D</span> Free gym</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-7">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-7">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — Last Monday</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — 4 pm</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — She walks</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — Free lunch</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2-8: Adverbs of Frequency -->
+    <div class="activity" id="act-a2-8">
+      <div class="activity-header">
+        <div class="act-icon">🔁</div>
+        <div class="act-meta">
+          <span class="act-tag tag-a2">Vocabulary</span>
+          <div class="act-title">Adverbs of Frequency</div>
+          <div class="act-desc">Choose the adverb that best matches the percentage clue.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('a2-8')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-a2-8">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">He __ eats vegetables — he hates them. (0%)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-8',1,false)"><span class="opt-letter">A</span> always</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',1,false)"><span class="opt-letter">B</span> usually</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',1,true)"><span class="opt-letter">C</span> never</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',1,false)"><span class="opt-letter">D</span> sometimes</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">I __ check my phone — about five times a day. (often)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-8',2,false)"><span class="opt-letter">A</span> rarely</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',2,true)"><span class="opt-letter">B</span> often</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',2,false)"><span class="opt-letter">C</span> never</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',2,false)"><span class="opt-letter">D</span> always</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">She __ forgets her keys — it happens once or twice a year. (rarely)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-8',3,false)"><span class="opt-letter">A</span> often</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',3,false)"><span class="opt-letter">B</span> usually</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',3,true)"><span class="opt-letter">C</span> rarely</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',3,false)"><span class="opt-letter">D</span> always</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">We __ have pizza on Fridays — it's our tradition. (100%)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'a2-8',4,true)"><span class="opt-letter">A</span> always</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',4,false)"><span class="opt-letter">B</span> sometimes</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',4,false)"><span class="opt-letter">C</span> often</li>
+            <li class="opt" onclick="pickMCQ(this,'a2-8',4,false)"><span class="opt-letter">D</span> never</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-a2-8">—</span></div>
+      </div>
+      <div class="answer-key" id="key-a2-8">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">C — never</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — often</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — rarely</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">A — always</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end a2 section -->
+
+  <hr class="level-separator" id="sep-levels"/>
+
+  <!-- ═══ B1 SECTION ═══ -->
+  <div class="level-section visible" id="sec-b1">
+    <div class="level-heading">
+      <div class="level-circle b1-circle">B1</div>
+      <div class="level-heading-text">
+        <h2>Intermediate Level</h2>
+        <p>Complex grammar, wider vocabulary, inferring meaning from context</p>
+      </div>
+    </div>
+
+    <!-- B1-1: Present Perfect vs Past Simple -->
+    <div class="activity b1-act" id="act-b1-1">
+      <div class="activity-header">
+        <div class="act-icon">🔗</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Grammar</span>
+          <div class="act-title">Present Perfect vs. Past Simple</div>
+          <div class="act-desc">Choose the correct tense to complete each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-1')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-1">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">I __ sushi twice in my life.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-1',1,false)"><span class="opt-letter">A</span> ate</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',1,true)"><span class="opt-letter">B</span> have eaten</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',1,false)"><span class="opt-letter">C</span> eat</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',1,false)"><span class="opt-letter">D</span> was eating</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">She __ the report an hour ago.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-1',2,false)"><span class="opt-letter">A</span> has finished</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',2,true)"><span class="opt-letter">B</span> finished</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',2,false)"><span class="opt-letter">C</span> finishes</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',2,false)"><span class="opt-letter">D</span> has been finishing</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">__ you ever __ to New Zealand?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-1',3,false)"><span class="opt-letter">A</span> Did / go</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',3,true)"><span class="opt-letter">B</span> Have / been</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',3,false)"><span class="opt-letter">C</span> Are / going</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',3,false)"><span class="opt-letter">D</span> Were / gone</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">We __ in this city since 2015.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-1',4,false)"><span class="opt-letter">A</span> lived</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',4,true)"><span class="opt-letter">B</span> have lived</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',4,false)"><span class="opt-letter">C</span> live</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',4,false)"><span class="opt-letter">D</span> were living</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">He __ his passport when he travelled last summer.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-1',5,true)"><span class="opt-letter">A</span> lost</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',5,false)"><span class="opt-letter">B</span> has lost</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',5,false)"><span class="opt-letter">C</span> lose</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-1',5,false)"><span class="opt-letter">D</span> had lose</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-1">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-1">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — have eaten</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — finished</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — Have / been</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — have lived</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">A — lost</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-2: Conditionals -->
+    <div class="activity b1-act" id="act-b1-2">
+      <div class="activity-header">
+        <div class="act-icon">🔀</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Grammar</span>
+          <div class="act-title">First & Second Conditionals</div>
+          <div class="act-desc">Choose the correct form to complete each conditional sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-2')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-2">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">If it __ tomorrow, we'll cancel the picnic. (1st)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-2',1,false)"><span class="opt-letter">A</span> would rain</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',1,true)"><span class="opt-letter">B</span> rains</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',1,false)"><span class="opt-letter">C</span> rained</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',1,false)"><span class="opt-letter">D</span> is raining</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">If I had more time, I __ a new language. (2nd)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-2',2,false)"><span class="opt-letter">A</span> will learn</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',2,true)"><span class="opt-letter">B</span> would learn</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',2,false)"><span class="opt-letter">C</span> learn</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',2,false)"><span class="opt-letter">D</span> would learned</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">Unless you study, you __ pass the test. (1st)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-2',3,false)"><span class="opt-letter">A</span> would not</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',3,true)"><span class="opt-letter">B</span> won't</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',3,false)"><span class="opt-letter">C</span> don't</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',3,false)"><span class="opt-letter">D</span> didn't</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">What would you do if you __ a million dollars? (2nd)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-2',4,false)"><span class="opt-letter">A</span> win</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',4,true)"><span class="opt-letter">B</span> won</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',4,false)"><span class="opt-letter">C</span> will win</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',4,false)"><span class="opt-letter">D</span> would win</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">If you press that button, the alarm __. (1st)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-2',5,false)"><span class="opt-letter">A</span> would ring</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',5,true)"><span class="opt-letter">B</span> will ring</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',5,false)"><span class="opt-letter">C</span> rings</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-2',5,false)"><span class="opt-letter">D</span> rang</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-2">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-2">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — rains</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — would learn</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — won't</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — won</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">B — will ring</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-3: Modal Verbs -->
+    <div class="activity b1-act" id="act-b1-3">
+      <div class="activity-header">
+        <div class="act-icon">🎭</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Grammar</span>
+          <div class="act-title">Modal Verbs — Advice, Obligation & Possibility</div>
+          <div class="act-desc">Choose the modal verb that fits the meaning best.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-3')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-3">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">You look exhausted. You __ get some rest. (advice)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-3',1,false)"><span class="opt-letter">A</span> must</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',1,true)"><span class="opt-letter">B</span> should</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',1,false)"><span class="opt-letter">C</span> might</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',1,false)"><span class="opt-letter">D</span> could</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">All passengers __ wear a seatbelt. It's the law. (obligation)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-3',2,false)"><span class="opt-letter">A</span> should</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',2,true)"><span class="opt-letter">B</span> must</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',2,false)"><span class="opt-letter">C</span> might</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',2,false)"><span class="opt-letter">D</span> can</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">I'm not sure, but she __ still be at the office. (possibility)</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-3',3,false)"><span class="opt-letter">A</span> must</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',3,false)"><span class="opt-letter">B</span> should</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',3,true)"><span class="opt-letter">C</span> might</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',3,false)"><span class="opt-letter">D</span> will</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">You __ park here — there's a sign saying it's prohibited.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-3',4,true)"><span class="opt-letter">A</span> mustn't</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',4,false)"><span class="opt-letter">B</span> shouldn't have</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',4,false)"><span class="opt-letter">C</span> don't have to</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-3',4,false)"><span class="opt-letter">D</span> can't have</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-3">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-3">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — should</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — must</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — might</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">A — mustn't</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-4: Linking Words Fill -->
+    <div class="activity b1-act" id="act-b1-4">
+      <div class="activity-header">
+        <div class="act-icon">🔧</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Writing</span>
+          <div class="act-title">Linking Words & Connectors</div>
+          <div class="act-desc">Type the correct linking word to complete each sentence.<br><em style="color:var(--muted);font-size:0.8rem">Word bank: however, although, therefore, whereas, in addition</em></div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-4')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-4">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">The film had great reviews; __, I found it quite boring.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-b1-4-1" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('b1-4',1,'however')"/>
+            <button class="check-btn" onclick="checkFill('b1-4',1,'however')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-b1-4-1"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">__ he was tired, he kept working until midnight.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-b1-4-2" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('b1-4',2,'although')"/>
+            <button class="check-btn" onclick="checkFill('b1-4',2,'although')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-b1-4-2"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">The roads were icy; __, the event was cancelled.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-b1-4-3" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('b1-4',3,'therefore')"/>
+            <button class="check-btn" onclick="checkFill('b1-4',3,'therefore')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-b1-4-3"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">Tom prefers cities, __ his partner loves the countryside.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-b1-4-4" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('b1-4',4,'whereas')"/>
+            <button class="check-btn" onclick="checkFill('b1-4',4,'whereas')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-b1-4-4"></div>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q5</span><span class="q-text">The hotel is close to the beach. __, it has a rooftop pool.</span></div>
+          <div class="fill-row">
+            <input class="fill-inp" id="f-b1-4-5" placeholder="Type answer…" onkeydown="if(event.key==='Enter')checkFill('b1-4',5,'in addition')"/>
+            <button class="check-btn" onclick="checkFill('b1-4',5,'in addition')">Check</button>
+          </div>
+          <div class="feedback-msg" id="fb-b1-4-5"></div>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-4">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-4">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">however</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">although</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">therefore</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">whereas</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q5</span><span class="ak-ans">in addition</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-5: Passive Voice -->
+    <div class="activity b1-act" id="act-b1-5">
+      <div class="activity-header">
+        <div class="act-icon">🔄</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Grammar</span>
+          <div class="act-title">Passive Voice</div>
+          <div class="act-desc">Choose the correct passive form for each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-5')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-5">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">The Eiffel Tower __ in 1889.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-5',1,false)"><span class="opt-letter">A</span> builds</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',1,false)"><span class="opt-letter">B</span> built</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',1,true)"><span class="opt-letter">C</span> was built</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',1,false)"><span class="opt-letter">D</span> has built</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">The emails __ every morning by the assistant.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-5',2,false)"><span class="opt-letter">A</span> check</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',2,true)"><span class="opt-letter">B</span> are checked</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',2,false)"><span class="opt-letter">C</span> were checking</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',2,false)"><span class="opt-letter">D</span> have checked</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">The package __ delivered by the time you get home.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-5',3,false)"><span class="opt-letter">A</span> is</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',3,false)"><span class="opt-letter">B</span> has been</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',3,true)"><span class="opt-letter">C</span> will have been</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',3,false)"><span class="opt-letter">D</span> was</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">The results __ not yet __ by the committee.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-5',4,false)"><span class="opt-letter">A</span> are / announced</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',4,true)"><span class="opt-letter">B</span> have / been announced</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',4,false)"><span class="opt-letter">C</span> were / announced</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-5',4,false)"><span class="opt-letter">D</span> will / announce</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-5">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-5">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">C — was built</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — are checked</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — will have been</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — have / been announced</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-6: Vocabulary Work & Travel -->
+    <div class="activity b1-act" id="act-b1-6">
+      <div class="activity-header">
+        <div class="act-icon">✈️</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Vocabulary</span>
+          <div class="act-title">Work & Travel Vocabulary</div>
+          <div class="act-desc">Choose the word that best completes each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-6')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-6">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">She __ her job last month and is now looking for a new one.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-6',1,false)"><span class="opt-letter">A</span> fired</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',1,true)"><span class="opt-letter">B</span> resigned from</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',1,false)"><span class="opt-letter">C</span> retired from</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',1,false)"><span class="opt-letter">D</span> applied for</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">A short stop in another city during a long flight is called a __.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-6',2,false)"><span class="opt-letter">A</span> detour</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',2,true)"><span class="opt-letter">B</span> layover</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',2,false)"><span class="opt-letter">C</span> transit</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',2,false)"><span class="opt-letter">D</span> transfer fee</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">The company offers a good __ package including health insurance and bonuses.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-6',3,false)"><span class="opt-letter">A</span> salary</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',3,true)"><span class="opt-letter">B</span> benefits</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',3,false)"><span class="opt-letter">C</span> contract</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',3,false)"><span class="opt-letter">D</span> promotion</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">You need to __ your bags at least one hour before the flight.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-6',4,false)"><span class="opt-letter">A</span> board</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',4,true)"><span class="opt-letter">B</span> check in</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',4,false)"><span class="opt-letter">C</span> depart</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-6',4,false)"><span class="opt-letter">D</span> land</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-6">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-6">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — resigned from</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — layover</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — benefits</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — check in</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-7: Reading Comprehension -->
+    <div class="activity b1-act" id="act-b1-7">
+      <div class="activity-header">
+        <div class="act-icon">📰</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Reading</span>
+          <div class="act-title">Article Comprehension — Inference Questions</div>
+          <div class="act-desc">Read the article, then answer the questions using inference.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-7')">Show Answers</button>
+      </div>
+      <div class="passage">Remote working has become a permanent feature of modern employment. While many employees appreciate the flexibility and the elimination of daily commutes, managers have raised concerns about maintaining team cohesion and monitoring productivity. Research suggests that workers who have the option to work remotely at least two days per week report higher job satisfaction, yet paradoxically, they also report feeling more isolated than their office-based colleagues. Companies are now investing in digital collaboration tools and scheduling regular in-person "anchor days" to address both productivity and wellbeing concerns.</div>
+      <div class="questions" id="qs-b1-7">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">What concern do managers have about remote working?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-7',1,false)"><span class="opt-letter">A</span> Higher salaries</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',1,true)"><span class="opt-letter">B</span> Team cohesion and productivity</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',1,false)"><span class="opt-letter">C</span> Too many employees commuting</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',1,false)"><span class="opt-letter">D</span> Lack of digital tools</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">What is the "paradox" mentioned in the article?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-7',2,false)"><span class="opt-letter">A</span> Remote workers earn less but are happier</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',2,true)"><span class="opt-letter">B</span> Remote workers are more satisfied but feel more isolated</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',2,false)"><span class="opt-letter">C</span> Managers support remote work but employees don't</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',2,false)"><span class="opt-letter">D</span> Companies save money but spend more on tools</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">What are "anchor days" most likely designed to do?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-7',3,false)"><span class="opt-letter">A</span> Let employees work fully from home</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',3,false)"><span class="opt-letter">B</span> Reduce company costs</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',3,true)"><span class="opt-letter">C</span> Bring teams together in person regularly</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',3,false)"><span class="opt-letter">D</span> Replace digital collaboration tools</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">Based on the article, which statement is most accurate?</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-7',4,false)"><span class="opt-letter">A</span> Remote working has no downsides</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',4,false)"><span class="opt-letter">B</span> Most employees prefer full office work</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',4,true)"><span class="opt-letter">C</span> Hybrid working has both benefits and challenges</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-7',4,false)"><span class="opt-letter">D</span> Companies are removing digital tools</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-7">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-7">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — Team cohesion & productivity</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — More satisfied but isolated</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">C — Bring teams together</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">C — Both benefits & challenges</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1-8: Reported Speech -->
+    <div class="activity b1-act" id="act-b1-8">
+      <div class="activity-header">
+        <div class="act-icon">💬</div>
+        <div class="act-meta">
+          <span class="act-tag tag-b1">Grammar</span>
+          <div class="act-title">Reported Speech</div>
+          <div class="act-desc">Choose the correct reported speech form for each sentence.</div>
+        </div>
+        <button class="toggle-answers-btn" onclick="toggleKey('b1-8')">Show Answers</button>
+      </div>
+      <div class="questions" id="qs-b1-8">
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q1</span><span class="q-text">"I am tired." → She said that she __ tired.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-8',1,false)"><span class="opt-letter">A</span> is</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',1,true)"><span class="opt-letter">B</span> was</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',1,false)"><span class="opt-letter">C</span> has been</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',1,false)"><span class="opt-letter">D</span> were</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q2</span><span class="q-text">"I will call you tomorrow." → He told me he __ call me the next day.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-8',2,false)"><span class="opt-letter">A</span> will</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',2,true)"><span class="opt-letter">B</span> would</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',2,false)"><span class="opt-letter">C</span> was going</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',2,false)"><span class="opt-letter">D</span> should</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q3</span><span class="q-text">"We have finished the project." → They said they __ the project.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-8',3,false)"><span class="opt-letter">A</span> have finished</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',3,true)"><span class="opt-letter">B</span> had finished</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',3,false)"><span class="opt-letter">C</span> finished</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',3,false)"><span class="opt-letter">D</span> were finishing</li>
+          </ul>
+        </div>
+        <div class="q-item">
+          <div class="q-num-row"><span class="q-num">Q4</span><span class="q-text">"Don't open the door!" → She told him __ the door.</span></div>
+          <ul class="opts-list">
+            <li class="opt" onclick="pickMCQ(this,'b1-8',4,false)"><span class="opt-letter">A</span> to not open</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',4,true)"><span class="opt-letter">B</span> not to open</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',4,false)"><span class="opt-letter">C</span> don't open</li>
+            <li class="opt" onclick="pickMCQ(this,'b1-8',4,false)"><span class="opt-letter">D</span> not opening</li>
+          </ul>
+        </div>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-val" id="score-b1-8">—</span></div>
+      </div>
+      <div class="answer-key" id="key-b1-8">
+        <div class="answer-key-header">Answer Key</div>
+        <div class="answer-key-grid">
+          <div class="ak-item"><span class="ak-qnum">Q1</span><span class="ak-ans">B — was</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q2</span><span class="ak-ans">B — would</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q3</span><span class="ak-ans">B — had finished</span></div>
+          <div class="ak-item"><span class="ak-qnum">Q4</span><span class="ak-ans">B — not to open</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end b1 section -->
+
+</div><!-- end content -->
+
+<footer>A2 &amp; B1 Intermediate English Activities · Complete Answer Keys Included · CEFR Aligned</footer>
+
+<script>
+/* ── Score tracking ── */
+const scores = {};
+function getScore(actId) {
+  if (!scores[actId]) scores[actId] = { c: 0, done: new Set() };
+  return scores[actId];
+}
+function updateScoreDisplay(actId, total) {
+  const s = getScore(actId);
+  const el = document.getElementById('score-' + actId);
+  if (el) el.textContent = s.c + ' / ' + total;
+}
+
+/* ── MCQ ── */
+function pickMCQ(el, actId, qNum, isCorrect) {
+  const s = getScore(actId);
+  if (s.done.has(qNum)) return;
+  s.done.add(qNum);
+
+  const allOpts = el.closest('.opts-list').querySelectorAll('.opt');
+  allOpts.forEach(o => { o.style.pointerEvents = 'none'; });
+
+  if (isCorrect) {
+    el.classList.add('correct-ans');
+    s.c++;
+  } else {
+    el.classList.add('wrong-ans');
+    // Highlight the correct one
+    allOpts.forEach(o => {
+      if (o.getAttribute('onclick') && o.getAttribute('onclick').includes(',true)')) {
+        o.classList.add('correct-ans');
+      }
+    });
+  }
+
+  // count total qs in this activity
+  const total = el.closest('.questions').querySelectorAll('.q-item').length - 0;
+  // subtract score-box
+  const qItems = el.closest('.questions').querySelectorAll('.q-item').length;
+  updateScoreDisplay(actId, qItems);
+}
+
+/* ── Fill ── */
+function checkFill(actId, qNum, answer) {
+  const s = getScore(actId);
+  if (s.done.has(qNum)) return;
+
+  const inp = document.getElementById('f-' + actId + '-' + qNum);
+  const fb = document.getElementById('fb-' + actId + '-' + qNum);
+  if (!inp) return;
+
+  const val = inp.value.trim().toLowerCase();
+  const correct = answer.toLowerCase();
+
+  s.done.add(qNum);
+  inp.disabled = true;
+
+  if (val === correct) {
+    inp.classList.add('correct-fill');
+    fb.innerHTML = '<span style="color:var(--correct)">✓ Correct!</span>';
+    s.c++;
+  } else {
+    inp.classList.add('wrong-fill');
+    fb.innerHTML = `<span style="color:var(--wrong)">✗ Answer: <strong style="color:var(--correct)">${answer}</strong></span>`;
+  }
+
+  const qItems = inp.closest('.questions').querySelectorAll('.q-item').length;
+  updateScoreDisplay(actId, qItems);
+}
+
+/* ── Answer Key Toggle ── */
+function toggleKey(actId) {
+  const key = document.getElementById('key-' + actId);
+  const btn = key.previousElementSibling.previousElementSibling;
+  // Find btn correctly
+  const activity = key.closest('.activity');
+  const toggleBtn = activity.querySelector('.toggle-answers-btn');
+
+  if (key.classList.contains('open')) {
+    key.classList.remove('open');
+    toggleBtn.textContent = 'Show Answers';
+    toggleBtn.classList.remove('shown');
+  } else {
+    key.classList.add('open');
+    toggleBtn.textContent = 'Hide Answers';
+    toggleBtn.classList.add('shown');
+  }
+}
+
+/* ── Level Filter ── */
+function showAll(btn) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sec-a2').classList.add('visible');
+  document.getElementById('sec-b1').classList.add('visible');
+  document.getElementById('sep-levels').style.display = '';
+}
+
+function showLevel(level, btn) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  const a2 = document.getElementById('sec-a2');
+  const b1 = document.getElementById('sec-b1');
+  const sep = document.getElementById('sep-levels');
+
+  if (level === 'a2') {
+    a2.classList.add('visible');
+    b1.classList.remove('visible');
+    sep.style.display = 'none';
+  } else {
+    b1.classList.add('visible');
+    a2.classList.remove('visible');
+    sep.style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>
